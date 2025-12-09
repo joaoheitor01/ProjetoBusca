@@ -1,0 +1,40 @@
+{
+  "name": "CONTROLE DE ACESSO  - GAB.MIL",
+  "members": [
+    {
+      "name": "Gerencia de Inteligência",
+      "email": "inteligencia@casamilitar.mt.gov.br",
+      "user_type": "Human"
+    },
+    {
+      "name": "Gabinete do Secretario da Casa Militar",
+      "email": "gabinete@casamilitar.mt.gov.br",
+      "user_type": "Human"
+    },
+    {
+      "name": "Recepção 02",
+      "email": "recepcao02@casacivil.mt.gov.br",
+      "user_type": "Human"
+    },
+    {
+      "name": "Recepção 03 (Substituição)",
+      "email": "recepcao03@casacivil.mt.gov.br",
+      "user_type": "Human"
+    },
+    {
+      "name": "ADRIANA RODRIGUES DE OLIVEIRA",
+      "email": "adrianaoliveira@pm.mt.gov.br",
+      "user_type": "Human"
+    },
+    {
+      "name": "Cairo Luiz",
+      "email": "recepcao06@casacivil.mt.gov.br",
+      "user_type": "Human"
+    },
+    {
+      "name": "Recepção 01 (Emanuelly)",
+      "email": "recepcao01@casacivil.mt.gov.br",
+      "user_type": "Human"
+    }
+  ]
+}
