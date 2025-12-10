@@ -43,7 +43,12 @@ def carregar_tudo() -> List[Dict[str, Any]]:
 def home():
     return FileResponse("index.html")
 
-# Rota 2: Faz a pesquisa com paginação
+# NOVA ROTA: Entrega o arquivo CSS
+@app.get("/style.css")
+def style():
+    return FileResponse("style.css")
+
+# Rota 2: Faz a pesquisa...
 @app.get("/api/busca")
 def buscar(q: str, pagina: int = 1, limite: int = 5):
     """

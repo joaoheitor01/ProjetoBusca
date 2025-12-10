@@ -7,188 +7,24 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --gov-blue: #004a87;
-            --gov-green: #00a859;
-            --light-gray: #f0f2f5;
-            --text-color: #333;
-        }
-
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background-color: var(--light-gray);
-            margin: 0;
-            padding: 0;
-            color: var(--text-color);
-        }
-
-        .govbr-bar {
-            background-color: #f8f8f8;
-            padding: 5px 0;
-            border-bottom: 2px solid var(--gov-green);
-        }
-        .govbr-bar-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .govbr-bar a {
-            font-weight: bold;
-            text-decoration: none;
-            color: var(--gov-blue);
-        }
-
-        header {
-            background: linear-gradient(to right, var(--gov-blue), #003366);
-            color: white;
-            padding: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .header-logo {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .header-logo img {
-            height: 60px;
-        }
-
-        .header-title h1 {
-            margin: 0;
-            font-size: 1.8em;
-            font-weight: 700;
-        }
-        .header-title p {
-            margin: 0;
-            font-size: 1em;
-        }
-
-        .header-search {
-            flex-grow: 1;
-            min-width: 300px;
-            max-width: 500px;
-        }
-
-        .search-box {
-            display: flex;
-            gap: 0;
-        }
-
-        input[type="text"] {
-            flex: 1;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 5px 0 0 5px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-            border-right: none;
-        }
-
-        input[type="text"]:focus {
-            border-color: var(--gov-green);
-            outline: none;
-        }
-
-        .search-box button {
-            padding: 12px 20px;
-            background-color: var(--gov-green);
-            color: white;
-            border: none;
-            border-radius: 0 5px 5px 0;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 16px;
-            transition: background-color 0.3s;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .search-box button:hover {
-            background-color: #008748;
-        }
-
-        .search-box button svg {
-            width: 20px;
-            height: 20px;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 20px auto;
-            background: white;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        #resultados { margin-top: 20px; }
-        #status { text-align: center; color: #666; margin-bottom: 20px; font-weight: bold; }
-
-        .card {
-            background: #fff;
-            border: 1px solid #e0e0e0;
-            border-left: 5px solid var(--gov-blue);
-            padding: 15px;
-            margin-bottom: 12px;
-            border-radius: 5px;
-            transition: box-shadow 0.3s;
-        }
-
-        .card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
-        .card p { margin: 8px 0; }
-        .label { font-weight: bold; color: #333; }
-
-        .pagination { display: flex; justify-content: center; align-items: center; gap: 15px; margin-top: 25px; }
-        .pagination button { background-color: var(--gov-blue); color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; padding: 10px 15px; transition: background-color 0.3s; }
-        .pagination button:hover { background-color: #003366; }
-        .pagination button:disabled { background-color: #ccc; cursor: not-allowed; }
-        .page-info { font-size: 16px; color: #555; font-weight: bold; }
-
-        footer {
-            background-color: var(--gov-blue);
-            color: white;
-            padding: 30px 20px;
-            margin-top: 40px;
-            text-align: center;
-        }
-
-        .footer-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .footer-logo {
-            height: 50px;
-            margin-bottom: 15px;
-        }
-    </style>
+    
+    <link rel="stylesheet" href="/style.css"> 
 </head>
 <body>
-
 <div class="govbr-bar">
     <div class="govbr-bar-container">
         <a href="https://www.gov.br/pt-br" target="_blank">gov.br</a>
+        
     </div>
 </div>
 
 <header>
     <div class="header-logo">
-        <img src="https://www.mt.gov.br/storage/webfiles/imagens/2022/04/29/1651259389-logo-governo-mt-branca.png" alt="Logo Governo de Mato Grosso">
+       
         <div class="header-title">
             <h1>Governo de Mato Grosso</h1>
             <p>Sistema de Busca de Mensagens</p>
+            
         </div>
     </div>
     <div class="header-search">
@@ -207,11 +43,19 @@
     <div id="paginacao"></div>
 </main>
 
+<div id="modalMensagem" class="modal">
+    <div class="modal-content">
+        <span class="close-button" onclick="fecharModal()">&times;</span>
+        <div id="modal-body"></div>
+    </div>
+</div>
+
 <footer>
     <div class="footer-container">
-        <img src="https://www.mt.gov.br/storage/webfiles/imagens/2022/04/29/1651259389-logo-governo-mt-branca.png" alt="Logo Governo de Mato Grosso" class="footer-logo">
+        <img src="https://www.casacivil.mt.gov.br/image/layout_set_logo?img_id=40654689&t=1765295228402" alt="Logo Governo de Mato Grosso" class="footer-logo">
         <p>&copy; 2025 - Todos os direitos reservados</p>
-        <p>Desenvolvido para o Governo do Estado de Mato Grosso</p>
+        <p>Desenvolvido pela Coordenadoria de Tecnologia da Informação - CTI</p>
+        <p class="creator-credit"> Criado por João Heitor Bertoloto</p>
     </div>
 </footer>
 
@@ -278,20 +122,67 @@
         const dataOriginal = item.created_date || null;
         let dataFormatada = 'Data não informada';
         if (dataOriginal) {
-            const dataObj = new Date(dataOriginal);
-            dataFormatada = dataObj.toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+            // Tentativa de conversão mais robusta da data
+            try {
+                // Exemplo de formato de data que pode vir: "terça-feira, 14 de janeiro de 2025 às 20:50:15 UTC"
+                // O new Date() no JS pode não entender nativamente todos os formatos de data em português.
+                // Uma biblioteca como a 'date-fns' ou 'moment.js' seria ideal, mas para JS puro, faremos uma conversão simples.
+                // A conversão abaixo pode falhar se o formato da data mudar.
+                const dataObj = new Date(dataOriginal.replace(' às', ''));
+                if (!isNaN(dataObj)) {
+                    dataFormatada = dataObj.toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+                }
+            } catch(e) { console.error("Erro ao formatar data:", e); }
         }
         
         const textoMensagem = (item.text || 'Mensagem vazia').replace(/\n/g, '<br>');
-
+        
+        // JSON.stringify é usado para passar o objeto 'item' como uma string no HTML
         return `
-            <div class="card">
+            <div class="card" onclick='abrirModal(${JSON.stringify(item)})'>
                 <p><span class="label">NOME:</span> ${nome}</p>
                 <p><span class="label">DATA:</span> ${dataFormatada}</p>
                 <p><span class="label">MENSAGEM:</span></p>
-                <div>${textoMensagem}</div>
+                <div class="mensagem-preview">${(textoMensagem.substring(0, 150) + (textoMensagem.length > 150 ? '...' : ''))}</div>
             </div>
         `;
+    }
+
+    function abrirModal(item) {
+        const modal = document.getElementById('modalMensagem');
+        const modalBody = document.getElementById('modal-body');
+        
+        const nome = item.creator ? item.creator.name : 'Não informado';
+        const dataOriginal = item.created_date || null;
+        let dataFormatada = 'Data não informada';
+         if (dataOriginal) {
+            const dataObj = new Date(dataOriginal);
+            dataFormatada = dataObj.toLocaleString('pt-BR', { timeZone: 'UTC', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        }
+        const textoMensagem = (item.text || 'Mensagem vazia').replace(/\n/g, '<br>');
+
+        modalBody.innerHTML = `
+            <h2>Detalhes da Mensagem</h2>
+            <p><strong>NOME:</strong> ${nome}</p>
+            <p><strong>EMAIL:</strong> ${item.creator ? item.creator.email : 'Não informado'}</p>
+            <p><strong>DATA:</strong> ${dataFormatada}</p>
+            <hr>
+            <p><strong>MENSAGEM:</strong></p>
+            <div>${textoMensagem}</div>
+        `;
+        modal.style.display = 'block';
+    }
+
+    function fecharModal() {
+        const modal = document.getElementById('modalMensagem');
+        modal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        const modal = document.getElementById('modalMensagem');
+        if (event.target == modal) {
+            fecharModal();
+        }
     }
 
     function renderPaginacao() {
@@ -300,7 +191,6 @@
             divPaginacao.innerHTML = '';
             return;
         }
-
         divPaginacao.innerHTML = `
             <div class="pagination">
                 <button onclick="mudarPagina(paginaAtual - 1)" ${paginaAtual === 1 ? 'disabled' : ''}>Anterior</button>
@@ -309,7 +199,6 @@
             </div>
         `;
     }
-
     function mudarPagina(novaPagina) {
         if (novaPagina >= 1 && novaPagina <= totalPaginas) {
             pesquisar(novaPagina);
