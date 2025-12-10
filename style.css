@@ -24,27 +24,39 @@ body {
     line-height: 1.6;
 }
 
-/* Barra Gov.br */
+/* Barra Gov.br - Estilo Botão no Canto */
 .govbr-bar {
-    background-color: #f8f8f8;
-    padding: 5px 0;
-    border-bottom: 2px solid var(--gov-green);
-    font-size: 0.9rem;
+    position: absolute; /* Permite colocar em qualquer lugar */
+    top: 15px;          /* Distância do topo */
+    right: 20px;        /* Mude para 'left: 20px;' se quiser na esquerda */
+    z-index: 100;       /* Garante que fica por cima do fundo azul */
+    background: none;   /* Remove o fundo cinza da barra */
+    border: none;       /* Remove a linha verde */
 }
+
 .govbr-bar-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-    display: flex;
-    align-items: center;
+    padding: 0;
+    margin: 0;
+    width: auto;
 }
+
 .govbr-bar a {
+    display: inline-block;
+    background-color: #ffffff; /* Fundo branco para destacar no azul */
+    color: var(--gov-blue);
+    padding: 5px 15px;
+    border-radius: 20px;       /* Borda redonda estilo botão */
     font-weight: bold;
     text-decoration: none;
-    color: var(--gov-blue);
-    transition: color 0.2s;
+    font-size: 0.8rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Sombra suave */
+    transition: transform 0.2s;
 }
-.govbr-bar a:hover { color: var(--gov-green); }
+
+.govbr-bar a:hover {
+    color: var(--gov-green);
+    transform: scale(1.05); /* Aumenta ligeiramente ao passar o rato */
+}
 
 /* Header */
 header {

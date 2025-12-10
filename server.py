@@ -48,6 +48,14 @@ def home():
 def style():
     return FileResponse("style.css")
 
+# Rota para o Favicon (PNG)
+@app.get("/favicon.png")
+def favicon():
+    # Garante que o ficheiro existe antes de tentar entregar
+    if os.path.exists("favicon.png"):
+        return FileResponse("favicon.png")
+    return {"error": "Imagem não encontrada"}
+
 # Rota 2: Faz a pesquisa...
 @app.get("/api/busca")
 def buscar(q: str, pagina: int = 1, limite: int = 5):

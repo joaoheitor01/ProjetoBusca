@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-4">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de Busca Mensagens - Governo de Mato Grosso</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    
+    <link rel="icon" href="/favicon.png" type="image/png">
     <link rel="stylesheet" href="/style.css"> 
 </head>
 <body>
 <div class="govbr-bar">
     <div class="govbr-bar-container">
-        <a href="https://www.gov.br/pt-br" target="_blank">gov.br</a>
+        <a href="https://www.gov.br/pt-br" target="_blank">Gov.br</a>
         
     </div>
 </div>
 
 <header>
     <div class="header-logo">
-       
+        <link rel="icon" href="/favicon.png" type="image/png">
         <div class="header-title">
             <h1>Governo de Mato Grosso</h1>
             <p>Sistema de Busca de Mensagens</p>
@@ -63,6 +63,43 @@
     let termoAtual = '';
     let paginaAtual = 1;
     let totalPaginas = 0;
+
+    function converterData(dataStr) {
+        if (!dataStr) return null;
+
+        const meses = {
+            'janeiro': 1, 'fevereiro': 2, 'março': 3, 'abril': 4, 'maio': 5, 'junho': 6,
+            'julho': 7, 'agosto': 8, 'setembro': 9, 'outubro': 10, 'novembro': 11, 'dezembro': 12
+        };
+
+        const regex = /(\d{1,2})\s+de\s+([a-zá-úç]+)\s+de\s+(\d{4})/i;
+        const match = dataStr.match(regex);
+
+        if (match) {
+            const dia = parseInt(match[1]);
+            const mesNome = match[2].toLowerCase();
+            const ano = parseInt(match[3]);
+
+            if (meses.hasOwnProperty(mesNome)) {
+                const mes = meses[mesNome];
+                const horaMatch = dataStr.match(/(\d{1,2}):(\d{1,2})(?::(\d{1,2}))?/);
+                let horas = 0, minutos = 0, segundos = 0;
+                if (horaMatch) {
+                    horas = parseInt(horaMatch[1]);
+                    minutos = parseInt(horaMatch[2]);
+                    segundos = horaMatch[3] ? parseInt(horaMatch[3]) : 0;
+                }
+                
+                if (dataStr.toUpperCase().includes('UTC')) {
+                    return new Date(Date.UTC(ano, mes, dia, horas, minutos, segundos));
+                }
+                return new Date(ano, mes, dia, horas, minutos, segundos);
+            }
+        }
+
+        const date = new Date(dataStr);
+        return isNaN(date.getTime()) ? null : date;
+    }
 
     function handleEnter(e) {
         if (e.key === 'Enter') {
@@ -121,18 +158,10 @@
         const nome = item.creator ? item.creator.name : (item.nome || 'Não informado');
         const dataOriginal = item.created_date || null;
         let dataFormatada = 'Data não informada';
-        if (dataOriginal) {
-            // Tentativa de conversão mais robusta da data
-            try {
-                // Exemplo de formato de data que pode vir: "terça-feira, 14 de janeiro de 2025 às 20:50:15 UTC"
-                // O new Date() no JS pode não entender nativamente todos os formatos de data em português.
-                // Uma biblioteca como a 'date-fns' ou 'moment.js' seria ideal, mas para JS puro, faremos uma conversão simples.
-                // A conversão abaixo pode falhar se o formato da data mudar.
-                const dataObj = new Date(dataOriginal.replace(' às', ''));
-                if (!isNaN(dataObj)) {
-                    dataFormatada = dataObj.toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
-                }
-            } catch(e) { console.error("Erro ao formatar data:", e); }
+        
+        const dataObj = converterData(dataOriginal);
+        if (dataObj) {
+            dataFormatada = dataObj.toLocaleString('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' });
         }
         
         const textoMensagem = (item.text || 'Mensagem vazia').replace(/\n/g, '<br>');
@@ -155,8 +184,9 @@
         const nome = item.creator ? item.creator.name : 'Não informado';
         const dataOriginal = item.created_date || null;
         let dataFormatada = 'Data não informada';
-         if (dataOriginal) {
-            const dataObj = new Date(dataOriginal);
+        
+        const dataObj = converterData(dataOriginal);
+        if (dataObj) {
             dataFormatada = dataObj.toLocaleString('pt-BR', { timeZone: 'UTC', day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' });
         }
         const textoMensagem = (item.text || 'Mensagem vazia').replace(/\n/g, '<br>');
